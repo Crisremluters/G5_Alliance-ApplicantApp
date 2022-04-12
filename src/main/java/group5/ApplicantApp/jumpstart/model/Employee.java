@@ -28,6 +28,23 @@ public class Employee {
 	@Column(name = "status")
 	private String status;
 	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateApplied;
+	
+	@PrePersist
+	private void onCreate()
+	{
+		dateApplied = new Date();
+	}
+	
+	public Date getDateApplied() {
+		return dateApplied;
+	}
+	public void setDateApplied(Date dateApplied) {
+		this.dateApplied = dateApplied;
+	}
+	
 	public long getId() {
 		return id;
 	}
