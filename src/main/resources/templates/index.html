@@ -43,6 +43,12 @@ margin-right:3%;
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
 							Employee Last Name</a>
 					</th>
+					
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=dateApplied&sortDir=' + ${reverseSortDir}}">
+							Date Applied</a>
+					</th>
+					
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
 							Employee Email</a>
@@ -58,6 +64,7 @@ margin-right:3%;
 				<tr th:each="employee : ${listEmployees}">
 					<td th:text="${employee.firstName}"></td>
 					<td th:text="${employee.lastName}"></td>
+					<td th:text="${#dates.format(applicant.dateApplied, 'yyyy/dd/MM')}"></td>
 					<td th:text="${employee.email}"></td>
 					<td th:text="${employee.status}"></td>
 					<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
