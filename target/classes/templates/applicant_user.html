@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Data Form</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/598821329d.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+	.center {
+	  margin: auto;
+	  width: 60%;
+	  border: 5px solid gainsboro;
+	  padding: 10px;
+	  text-align: center;
+	  position: fixed;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	}
+	
+	body {
+	  margin: 0;
+	  font-family: Arial, Helvetica, sans-serif;
+	  background-color:ghostwhite;
+	}
+	
+	.topnav {
+	  overflow: hidden;
+	  background-color: red;
+	}
+	
+	.topnav a {
+	  float: right;
+	  color: black;
+	  text-align: center;
+	  padding: 14px 16px;
+	  text-decoration: none;
+	  font-size: 20px;
+	}
+	
+	.topnav a:hover {
+	  background-color:white;
+	  color: black;
+	}
+	
+	.topnav a.active {
+	  background-color: white;
+	  color: white;
+	  float:left;
+	}
+	
+	.input{
+	  margin-left: 5px;
+	  margin-top: 5px;
+	}
+	
+	.button {
+	  border-radius: 4px;
+	  background-color: red;
+	  border: none;
+	  color: #FFFFFF;
+	  text-align: left;
+	  font-size: 28px;
+	  padding: 5px;
+	  width: 400px;
+	  transition: all 0.5s;
+	  cursor: pointer;
+	}
+	
+	.button span{
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+	}
+	
+	.button span:after {
+	  content: '\00bb';
+	  position: absolute;
+	  opacity: 0;
+	  top: 0;
+	  right: -20px;
+	  transition: 0.5s;
+	}
+	
+	.button:hover span {
+	  padding-right: 25px;
+	}
+	
+	.button:hover span:after {
+	  opacity: 1;
+	  right: 0;
+	}
+	
+	.label{
+		font-size:16px;
+		color:black;
+	}
+		
+</style>
+</head>
+<body>
+	
+ 	<div class="topnav">
+ 	 <a href="/"><i class="fa-solid fa-house"></i></a>
+ 	 <a class="active"><img src ="https://www.alliance.com.ph/images/asi-logo-invert.svg" alt="alliance-logo">
+	</div>
+	
+	<div class="container">
+		<div class="alert alert-secondary" role="alert" style="font-size:30px; font-weight:bold; text-align:center; margin-top:30px; color:black">Employment Data Form</div>
+		<hr>
+		<form action="#" th:action="@{/createApplicant}" th:object="${applicant}"
+			method="POST" class="form-inline">
+				<label class="label" style="margin-right:380px">Date Applied</label>
+				<label class="label" style="margin-right:10px">Position Applied</label>
+				<input type="date" name="app_dateApplied"
+				placeholder="Date" class="form-control mb-4 col-5">
+				<input type="text" name="ajobPos" list="positions"
+				placeholder="Select Position Applied" class="form-control mb-4 col-5" style="margin-left:40px">
+				<datalist id="positions">
+					<option value="Java Developer"/>
+					<option value="C# Developer"/>
+					<option value="Full Stack Developer"/>
+					<option value="PHP Developer"/>
+				</datalist>
+				
+				<button type="button" class="button" style="margin-right: 600px; margin-bottom:10px"><span>I. Personal Information</span></button>
+				<label class="label" style="margin-right:170px">Last Name</label>
+				<label class="label" style="margin-right:220px">First Name</label>
+				<label class="label" style="margin-right:180px">Middle Name</label>
+				<label class="label" style="margin-right:5px">Birth date</label>
+				<input type="text" name="alastName"  maxlength="30"
+				placeholder="Last Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="afirstName"  maxlength="30"
+				placeholder="First Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="amidName"  maxlength="30"
+				placeholder="Middle Name" class="form-control mb-4 col-3" style="margin-right:20px">		
+				<input type="date" name="app_birthdate"
+				placeholder="dd/mm/yyyy" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-right:120px">Religion</label>
+				<label class="label" style="margin-right:160px">Sex</label>
+				<label class="label" style="margin-right:60px">Age</label>
+				<label class="label" style="margin-right:180px">City Address</label>
+				<label class="label" style="margin-right:5px">Provincial Address</label>
+				<input type="text" name="areligion" list="religion"
+				placeholder="Religion" class="form-control mb-4 col-2" style="margin-right:20px">
+				<datalist id="religion">
+					<option value="Roman Catholic"/>
+					<option value="Evangelical"/>
+					<option value="Iglesia ni Cristo"/>
+					<option value="Aglipayan"/>
+					<option value="Protestant"/>
+					<option value="Baptist"/>
+					<option value="Seventh Day Adventist"/>
+					<option value="Pentecostal"/>
+					<option value="Anglican"/>
+					<option value="Orthodox"/>
+					<option value="Methodist"/>
+				</datalist>
+				<input type="text" name="asex" list="sex"
+				placeholder="Sex" class="form-control mb-4 col-2" style="margin-right:20px">
+				<datalist id="sex">
+					<option value="Male"/>
+					<option value="Female"/>
+				</datalist>
+				<input type="number" name="aage"  min="18" max="120"
+				placeholder="Age" class="form-control mb-4 col-1" style="margin-right:20px">
+				<input type="text" name="acityAdd"
+				placeholder="City Address" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="aprovAdd"
+				placeholder="Provincial Address" class="form-control mb-4 col-3">
+				<label class="label" style="margin-right:40px">Telephone Number</label>
+				<label class="label" style="margin-right:65px">Mobile Number</label>
+				<label class="label" style="margin-right:75px">Email Address</label>
+				<label class="label" style="margin-right:45px">PhilHealth Number</label>
+				<label class="label" style="margin-right:30px">SSS No.</label>
+				<label class="label" style="margin-right:5px">TIN No.</label>
+				<input type="number" name="atelNum" maxlength="11"
+				placeholder="Telephone Number" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="number" name="amobileNum"  maxlength="11"
+				placeholder="Mobile Number" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="aemailAdd"  maxlength="40"
+				placeholder="Email Address" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="number" name="aphilNum"  maxlength="12"
+				placeholder="Philhealth Number" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="number" name="asssNum"  maxlength="10"
+				placeholder="SSS No." class="form-control mb-4 col-1" style="margin-right:20px">
+				<input type="number" name="atinNum"  maxlength="9"
+				placeholder="TIN No." class="form-control mb-4 col-1" style="margin-right:20px">
+				<label class="label" style="margin-right:105px">Contact Person Name</label>
+				<label class="label" style="margin-right:70px">Contact Number</label>
+				<label class="label" style="margin-right:95px">Relationship</label>
+				<label class="label" style="margin-right:30px">Address</label>
+				<input type="text" name="conName"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="conNum"
+				placeholder="Mobile Number" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="conRelation"
+				placeholder="Relationship" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="conAddress"
+				placeholder="Contact Person's Address" class="form-control mb-4 col-3" style="margin-right:20px">
+				<label class="label" style="margin-right:170px">Spouse Name</label>
+				<label class="label" style="margin-right:95px">Occupation</label>
+				<label class="label" style="margin-right:115px">Company</label>
+				<label class="label" style="margin-right:60px">Age</label>
+				<input type="text" name="spouseName"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="spouseOccup"
+				placeholder="Occupation" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="spouseComp"
+				placeholder="Company" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="spouseAge"
+				placeholder="Age" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label style="margin-left:65px">Name of Dependents</label>
+				<label style="margin-left:165px">Age</label>
+				<label  style="margin-left:165px; margin-right:450px">Relation </label>
+				<input type="text" name="depName1"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="depAge1"
+				placeholder="Age" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="depRelation1"
+				placeholder="Relationship" class="form-control mb-4 col-2" style="margin-right:150px">
+				<input type="text" name="depName2"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="depAge2"
+				placeholder="Age" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="depRelation2"
+				placeholder="Relationship" class="form-control mb-4 col-2" style="margin-right:150px">
+				<input type="text" name="depName3"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="depAge3"
+				placeholder="Age" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="depRelation3"
+				placeholder="Relationship" class="form-control mb-4 col-2" style="margin-right:120px">
+				
+				<button type="button" class="button" style="margin-right: 565px; margin-bottom:10px"><span>II. Family Background </span></button>
+				<label class="label" style="margin-right:160px">Father's Name</label>
+				<label class="label" style="margin-right:100px">Occupation</label>
+				<label class="label" style="margin-right:205px">Company</label>
+				<label class="label" style="margin-right:5px">Age</label>
+			 	<input type="text" name="fbfatherName"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="fbfatherOccup"
+				placeholder="Occupation" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="fbfatherComp"
+				placeholder="Company" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="fbfatherAge"
+				placeholder="Age" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-right:160px">Mother's Name</label>
+				<label class="label" style="margin-right:100px">Occupation</label>
+				<label class="label" style="margin-right:205px">Company</label>
+				<label class="label" style="margin-right:5px">Age</label>
+				<input type="text" name="fbmotherName"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="fbmotherOccup"
+				placeholder="Occupation" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="fbmotherComp"
+				placeholder="Company" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="fbmotherAge"
+				placeholder="Age" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-right:35px">Number of Siblings</label>
+				<label class="label" style="margin-right:600px">Birth Order</label>
+				<input type="text" name="fbNumSiblings"
+				placeholder="Number of Siblings" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="fbBirthOrder" list="order"
+				placeholder="Birth Order" class="form-control mb-4 col-2" style="margin-right:20px">
+				<datalist id="order">
+					<option value="First"/>
+					<option value="Second"/>
+					<option value="Third"/>
+					<option value="Fourth"/>
+					<option value="Fifth"/>
+				</datalist>
+				
+				<button type="button" class="button" style="margin-right: 470px; margin-bottom:10px"><span>III. Educational Background</span></button>
+				<label class="label" style="margin-right:120px">Grade School Name</label>
+				<label class="label" style="margin-right:70px">Years Attended</label>
+				<label class="label" style="margin-right:230px">Degree</label>
+				<label class="label" style="margin-right:10px">Achievement</label>
+			 	<input type="text" name="educNameGS"
+				placeholder="Grade School" class="form-control mb-4 col-3" style="margin-right:20px">
+			 	<input type="text" name="educYrsGS"
+				placeholder="Years Attended" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="educDegreeGS"
+				placeholder="Degree" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="educAchievementGS"
+				placeholder="Achievement" class="form-control mb-4 col-3" style="margin-right:20px">
+				<label class="label" style="margin-right:130px">High School Name</label>
+				<label class="label" style="margin-right:70px">Years Attended</label>
+				<label class="label" style="margin-right:230px">Degree</label>
+				<label class="label" style="margin-right:10px">Achievement</label>
+				<input type="text" name="educNameHS"
+				placeholder="High School" class="form-control mb-4 col-3" style="margin-right:20px">
+			 	<input type="text" name="educYrsHS"
+				placeholder="Years Attended" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="educDegreeHS"
+				placeholder="Degree" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="educAchievementHS"
+				placeholder="Achievement" class="form-control mb-4 col-3" style="margin-right:20px">
+				<label class="label" style="margin-right:145px">University Name</label>
+				<label class="label" style="margin-right:70px">Years Attended</label>
+				<label class="label" style="margin-right:230px">Degree</label>
+				<label class="label" style="margin-right:10px">Achievement</label>
+				<input type="text" name="educNameCS"
+				placeholder="College" class="form-control mb-4 col-3" style="margin-right:20px">
+			 	<input type="text" name="educYrsCS"
+				placeholder="Years Attended" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="educDegreeCS"
+				placeholder="Degree" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="educAchievementCS"
+				placeholder="Achievement" class="form-control mb-4 col-3" style="margin-right:20px">
+				<label class="label" style="margin-right:145px">University Name</label>
+				<label class="label" style="margin-right:70px">Years Attended</label>
+				<label class="label" style="margin-right:230px">Degree</label>
+				<label class="label" style="margin-right:10px">Achievement</label>
+				<input type="text" name="educNameMS"
+				placeholder="Masters / Others" class="form-control mb-4 col-3" style="margin-right:20px">
+			 	<input type="text" name="educYrsMS"
+				placeholder="Years Attended" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="educDegreeMS"
+				placeholder="Degree" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="educAchievementMS"
+				placeholder="Achievement" class="form-control mb-4 col-3" style="margin-right:20px">
+				<label class="label" style="margin-right:155px">Thesis Subject</label>
+				<label class="label" style="margin-right:195px">Thesis Title</label>
+				<label class="label" style="margin-right:3px">Programming Language</label>
+				<label class="label" style="margin-right:5px">Description</label>
+				<input type="text" name="thesisSubj"
+				placeholder="Project/Thesis Subject" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="thesisTitle"
+				placeholder="Thesis Title" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="thesisProgLang"
+				placeholder="Prog. Language Used" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="thesisDesc"
+				placeholder="Description" class="form-control mb-4 col-3" style="margin-right:20px">
+				<label class="label" style="margin-right:235px">Role</label>
+				<label class="label" style="margin-right:160px">Teacher's Name</label>
+				<label class="label" style="margin-right:60px">Contact Number</label>
+				<label class="label" style="margin-right:5px">Grade</label>
+				<input type="text" name="thesisRole"
+				placeholder="Role" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="thesisTName"
+				placeholder="Teacher's Name" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="thesisContactNum"
+				placeholder="Contact No." class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="thesisGrade"
+				placeholder="Grade" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-left:300px; margin-right:390px">Extra Curricular Activities</label>
+				<label class="label" style="margin-right:130px">Role</label>
+				<input type="text" name="extraActOne"
+				placeholder="Extra Curricular Activity" class="form-control mb-4 col-8" style="margin-right:60px">
+				<input type="text" name="extraActOneRole"
+				placeholder="Role" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="extraActTwo"
+				placeholder="Extra Curricular Activity" class="form-control mb-4 col-8" style="margin-right:60px">
+				<input type="text" name="extraActTwoRole"
+				placeholder="Role" class="form-control mb-4 col-3" style="margin-right:20px">
+				<button type="button" class="button" style="margin-right: 550px; margin-bottom:10px"><span>IV. Work Experience</span></button>
+				<label class="label" style="margin-right:245px">Company Name</label>
+				<label class="label" style="margin-right:210px">Duration</label>
+				<label class="label" style="margin-right:120px">Position</label>
+				<label class="label" style="margin-right:5px">Salary</label>
+				<input type="text" name="wrkCompOne"
+				placeholder="Company" class="form-control mb-4 col-4" style="margin-right:20px">
+				<input type="text" name="wrkOne_dur"
+				placeholder="Duration" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="wrkOne_pos"
+				placeholder="Position" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="wrkOne_sal"
+				placeholder="Salary" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-right:230px">Direct Supervisor</label>
+				<label class="label" style="margin-right:180px">Reason for Leaving</label>
+				<input type="text" name="wrkOne_dirtSV"
+				placeholder="Direct Supervisor" class="form-control mb-4 col-4" style="margin-right:20px">
+				<input type="text" name="wrkOne_reasonfl"
+				placeholder="Reason for Leaving" class="form-control mb-4 col-7" style="margin-right:20px">
+				<label class="label" style="margin-right:245px">Company Name</label>
+				<label class="label" style="margin-right:210px">Duration</label>
+				<label class="label" style="margin-right:120px">Position</label>
+				<label class="label" style="margin-right:5px">Salary</label>
+				<input type="text" name="wrkCompTwo"
+				placeholder="Company" class="form-control mb-4 col-4" style="margin-right:20px">
+				<input type="text" name="wrkTwo_dur"
+				placeholder="Duration" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="wrkTwo_pos"
+				placeholder="Position" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="wrkTwo_sal"
+				placeholder="Salary" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-right:230px">Direct Supervisor</label>
+				<label class="label" style="margin-right:180px">Reason for Leaving</label>
+				<input type="text" name="wrkTwo_dirtSV"
+				placeholder="Direct Supervisor" class="form-control mb-4 col-4" style="margin-right:20px">
+				<input type="text" name="wrkTwo_reasonfl"
+				placeholder="Reason for Leaving" class="form-control mb-4 col-7" style="margin-right:20px">
+				<label class="label" style="margin-right:245px">Company Name</label>
+				<label class="label" style="margin-right:210px">Duration</label>
+				<label class="label" style="margin-right:120px">Position</label>
+				<label class="label" style="margin-right:5px">Salary</label>
+				<input type="text" name="wrkCompThree"
+				placeholder="Company" class="form-control mb-4 col-4" style="margin-right:20px">
+				<input type="text" name="wrkThree_dur"
+				placeholder="Duration" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="wrkThree_pos"
+				placeholder="Position" class="form-control mb-4 col-2" style="margin-right:20px">
+				<input type="text" name="wrkThree_sal"
+				placeholder="Salary" class="form-control mb-4 col-2" style="margin-right:20px">
+				<label class="label" style="margin-right:230px">Direct Supervisor</label>
+				<label class="label" style="margin-right:180px">Reason for Leaving</label>
+				<input type="text" name="wrkThree_dirtSV"
+				placeholder="Direct Supervisor" class="form-control mb-4 col-4" style="margin-right:20px">
+				<input type="text" name="wrkThree_reasonfl"
+				placeholder="Reason for Leaving" class="form-control mb-4 col-7" style="margin-right:20px">
+				<label class="label" style="margin-right:10px">What are your Career Plans 3-5 Years from now? Is Going Abroad part of your Plans?</label>
+				<textarea rows="3" cols="150" name="wrk_carPlanDesc"
+				placeholder="  Enter here ... " style="border:solid 1px gray; border-radius:4px; margin-bottom:15px"></textarea>
+				<label class="label" style="margin-right:95px">Date Available for Work</label>
+				<label class="label" style="margin-right:160px">Expected Salary</label>
+				<label class="label" style="margin-right:10px">Are you Willing to Travel?</label>
+				<input type="text" name="wrk_dateAvail"
+				placeholder="MM/DD/YYYY" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="wrk_expectedSal"
+				placeholder="Expected Salary" class="form-control mb-4 col-3" style="margin-right:20px">
+				<input type="text" name="wrk_willTT"
+				placeholder="Yes / No?" class="form-control mb-4 col-3" style="margin-right:100px">
+				<label class="label" style="margin-right:10px">Do you have any previous convictions?</label>
+				<input type="text" name="prevConvic"
+				placeholder="Yes / No?" class="form-control mb-4 col-1" style="margin-right:10px">
+				<label class="label" style="margin-right:10px">If yes, please provide details.</label>
+				<input type="text" name="convicDetails"
+				placeholder="Enter here ..." class="form-control mb-4 col-4" style="margin-right:20px">
+				<label class="label" style="margin-right:10px">Will you be willing to undergo a random drug test?</label>
+				<input type="text" name="convicUnderDrugT"
+				placeholder="Yes / No?" class="form-control mb-4 col-1" style="margin-right:10px">
+				<label class="label" style="margin-right:10px">If no, please explain.</label>
+				<input type="text" name="convicDTReason"
+				placeholder="Enter here ..." class="form-control mb-4 col-4" style="margin-right:10px">
+				<button type="button" class="button" style="margin-right: 550px; margin-bottom:10px"><span>V. References</span></button>
+				<label class="label" style="margin-right:250px; font-weight:normal">Direct Supervisor from last 2 employers; please put * beside supervisor's name if you're still employed.</label>
+				<hr>
+				<label class="label" style="margin-right:220px">Name</label>
+				<label class="label" style="margin-right:100px">Company</label>
+				<label class="label" style="margin-right:115px">Position</label>
+				<label class="label" style="margin-right:110px">Relation</label>
+				<label class="label" style="margin-right:10px">Contact Numbers</label>
+				<input type="text" name="refNameOne"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:10px">
+				<input type="text" name="refOneComp"
+				placeholder="Company" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refOnePos"
+				placeholder="Position" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refOneRel"
+				placeholder="Relation" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refOneContactNum"
+				placeholder="Mobile Number" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refNameTwo"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:10px">
+				<input type="text" name="refTwoComp"
+				placeholder="Company" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refTwoPos"
+				placeholder="Position" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refTwoRelation"
+				placeholder="Relation" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refTwoContactNum"
+				placeholder="Mobile Number" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refNameThree"
+				placeholder="Name" class="form-control mb-4 col-3" style="margin-right:10px">
+				<input type="text" name="refThreeComp"
+				placeholder="Company" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refThreePos"
+				placeholder="Position" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refThreeRelation"
+				placeholder="Relation" class="form-control mb-4 col-2" style="margin-right:10px">
+				<input type="text" name="refThreeContactNum"
+				placeholder="Mobile Number" class="form-control mb-4 col-2" style="margin-right:10px">
+				<button type="submit" class="btn btn-secondary btn-lg" style="background-color:green; width:1050px; margin-top:10px; margin-bottom:50px">Submit</button>
+		</form>
+	
+		<!-- <a th:href = "@{/}"> Back to Applicant List</a> -->
+	</div>
+</body>
+</html>

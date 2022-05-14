@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Users Management Page</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<style>
+input {
+float:right;
+margin-right:3%;
+margin-top:1%;
+margin-bottom:1%;
+}
+</style>
+
+</head>
+<body>
+<header>
+	<div class="topnav">
+		<img src="https://www.alliance.com.ph/images/asi-logo-invert.svg" id="logo" class="img-thumbnail" alt="Alliance Logo">
+	</div>
+</header>
+<!-- ======================================M==================A================I==================N================================ -->
+<main class="container-lg">
+	<div class="wrapper">
+ <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-info" value="Logout" />
+    </form>
+  
+
+<div>
+     <h3>User Management</h3>
+     
+     
+     <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      
+      <th scope="col">ID</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="list:${hrList}">
+    
+    <td th:text="${list.id}"/>
+    
+    <td th:text="${list.email}"/>
+   
+   <td><a th:href="@{'/showAddUserStatsForm/' + ${list.id}}" class="btn btn-warning">Update Status</a></td>
+   
+    </tr>
+  </tbody>
+</table>
+   </div>
+   
+   
+  <a th:href = "@{/usersManagement}"> Back to User Management</a>
+</body>
+</html>

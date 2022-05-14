@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Application App</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	
+</head>
+
+
+<body>
+
+<!-- =============================H=============E==============A============D============E=============R============================ -->
+<header>
+	<div class="topnav">
+		<img src="https://www.alliance.com.ph/images/asi-logo-invert.svg" id="logo" class="img-thumbnail" alt="Alliance Logo">
+	</div>
+</header>
+<!-- ======================================M==================A================I==================N================================ -->
+<main class="container-lg">
+	<div class="wrapper">
+
+<div style="margin-left:40px;margin-top:40px;">	
+		<h1>User Management</h1>
+	
+	<a  href="/usersList" class="btn btn-primary">List of Users</a>
+	     <a href="/showNewAddUsersForm" class="btn btn-success">Add Users</a>
+	     <a href="/usersListAddStats" class="btn btn-warning">Add Status</a>
+	     <a href="/showListEditUsers" class="btn btn-info">Edit Users</a>
+	     <a href="/showListDeleteUsers" class="btn btn-danger">Delete Users</a>
+   
+   </div>
+   <br>
+   <br>
+	<a th:href = "@{/hrPage}"> Back to Applicant List</a>
+</body>
+</html>

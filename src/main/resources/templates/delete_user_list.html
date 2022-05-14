@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management System</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<style>
+#logout {
+float:right;
+margin-right:3%;
+margin-top:1%;
+margin-bottom:1%;
+}
+</style>
+
+<body>
+
+<header>
+	<div class="topnav">
+		<img src="https://www.alliance.com.ph/images/asi-logo-invert.svg" id="logo" class="img-thumbnail" alt="Alliance Logo">
+	</div>
+</header>
+<!-- ======================================M==================A================I==================N================================ -->
+<main class="container-lg">
+	<div class="wrapper">
+
+ <form th:action="@{/logout}" method="post">
+        <input id="logout" type="submit" class="btn btn-info" value="Logout" />
+    </form>
+
+	<div class="container">
+		<h1>User Management</h1>
+		<hr>
+		<h2>Delete Users</h2>
+
+		 <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      
+      <th scope="col">ID</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="list:${hrList}">
+    
+    <td th:text="${list.id}"/>
+    
+    <td th:text="${list.email}"/>
+   
+   <td><a th:href="@{'/users/delete/' + ${list.id}}" class="btn btn-danger">Delete User</a></td>
+   
+    </tr>
+  </tbody>
+</table>
+		<hr>
+		
+		<a th:href = "@{/usersManagement}"> Back to User Management</a>
+	</div>
+</body>
+</html>

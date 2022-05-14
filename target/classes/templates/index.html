@@ -16,15 +16,28 @@ input {
 float:right;
 margin-right:3%;
 }
+
+
 </style>
+
+
 
 <body>
 
+<!-- =============================H=============E==============A============D============E=============R============================ -->
+<header>
+	<div class="topnav">
+		<img src="https://www.alliance.com.ph/images/asi-logo-invert.svg" id="logo" class="img-thumbnail" alt="Alliance Logo">
+	</div>
+</header>
+<!-- ======================================M==================A================I==================N================================ -->
+<main class="container-lg">
+	<div class="wrapper">
 
   <form th:action="@{/logout}" method="post">
         <input type="submit" class="btn btn-info" value="Logout" />
     </form>
-  
+  <a style="float:right;margin-right:100px;margin-top:50px;margin-bottom:10px;" href="/usersManagement" class="btn btn-success">User Management</a>
 
 
 	<div class="container my-4">
@@ -37,15 +50,21 @@ margin-right:3%;
 				<tr>
 					<th>
 						<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
-							Employee First Name</a>
+							Applicant First Name</a>
 					</th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
-							Employee Last Name</a>
+							Applicant Last Name</a>
 					</th>
+					
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=dateApplied&sortDir=' + ${reverseSortDir}}">
+							Date Applied</a>
+					</th>
+					
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
-							Employee Email</a>
+							Applicant Email</a>
 					</th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
@@ -55,13 +74,14 @@ margin-right:3%;
 				</tr>
 			</thead>
 			<tbody>	
-				<tr th:each="employee : ${listEmployees}">
-					<td th:text="${employee.firstName}"></td>
-					<td th:text="${employee.lastName}"></td>
-					<td th:text="${employee.email}"></td>
-					<td th:text="${employee.status}"></td>
-					<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
-					    <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+				<tr th:each="applicant : ${listApplicants}">
+					<td th:text="${applicant.afirstName}"></td>
+					<td th:text="${applicant.alastName}"></td>
+					<td th:text="${#dates.format(applicant.app_dateApplied, 'yyyy/dd/MM')}"></td>
+					<td th:text="${applicant.aemailAdd}"></td>
+					<td th:text="${applicant.status}"></td>
+					<td> <a th:href="@{/showFormForUpdate/{id}(id=${applicant.app_id})}" class="btn btn-primary">Update</a>
+					    <a th:href="@{/deleteApplicant/{id}(id=${applicant.app_id})}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			</tbody>
@@ -89,6 +109,10 @@ margin-right:3%;
    				 </div>
 			</div>
 		</div>
-	</div>
+		
+		
+   
+   </div>
+	
 </body>
 </html>
